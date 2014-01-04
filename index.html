@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Алгоритъм на Дийкстра</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Алгоритъм на Дийкстра</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="_home_nav"><a href="#">Начало</a></li>
+            <li class="_graph_nav"><a href="#graph">Граф</a></li>
+            <li class="_algorithm_nav"><a href="#algorithm">Алгоритъм</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="_home container">
+        <h1>Алгоритъм на Дийкстра</h1>
+        <p>
+          Точките на граф са свързани помежду си чрез ребра, всяко от
+          които има &bdquo;тежест&ldquo;.  Алгоритъмът гарантирано
+          намира най–&bdquo;лекия&ldquo; път между кои да е две точки на
+          графа.
+        </p>
+        <p>
+          <a class="btn btn-primary btn-lg" href="http://is.gd/R2gQIx">Теория на графите &raquo;</a>
+          <a class="btn btn-primary btn-lg" href="http://is.gd/UmnZoq">Алгоритъм на Дийкстра &raquo;</a>
+        </p>
+      </div><!-- ._home -->
+
+      <div class="_graph container">
+        <h1>Граф</h1>
+      </div><!-- ._graph -->
+
+      <div class="_algorithm container">
+        <h1>Алгоритъм</h1>
+      </div><!-- ._algorithm -->
+    </div>
+
+    <div class="container">
+      <div class="_home">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Стъпка 1</h2>
+            <p>Настройват се данните на графа – от какви точки е изграден и какви ребра свързват точките.</p>
+            <p><a class="btn btn-default" href="#graph">Към страницата &raquo;</a></p>
+          </div>
+          <div class="col-lg-6">
+            <h2>Стъпка 2</h2>
+            <p>Избират се две точки от графа и чрез алгоритъма на Дийкстра се изчислява най-лекият път между тях.</p>
+            <p><a class="btn btn-default" href="#algorithm">Към страницата &raquo;</a></p>
+          </div>
+        </div>
+      </div><!-- ._home -->
+
+      <div class="_graph">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="pane graph-edges">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Начална точка</th>
+                    <th>Крайна точка</th>
+                    <th>Тежест</th>
+                    <th>Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="edgeTableBody">
+                  <tr id="edgeRowModel" class="_edgeRow hide">
+                    <td><input class="_startVertex form-control" type="text" value=""></td>
+                    <td><input class="_endVertex form-control" type="text" value=""></td>
+                    <td><input class="_edgeWeight form-control" type="number" value=""></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <!-- Initial data -->
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Едно"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Две"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="7"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Едно"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Три"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="9"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Едно"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Шест"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="14"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Две"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Три"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="10"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Две"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Четири"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="15"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Три"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Четири"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="11"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Три"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Шест"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="2"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Четири"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Пет"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="6"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                  <tr class="_edgeRow">
+                    <td><input class="_startVertex form-control" type="text" value="Пет"></td>
+                    <td><input class="_endVertex form-control" type="text" value="Шест"></td>
+                    <td><input class="_edgeWeight form-control" type="number" value="9"></td>
+                    <td><button class="_edgeDeleteButton btn btn-danger" style="width: 100%;">Изтрий</button></td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="4">
+                      <button id="addEdgeButton" class="btn btn-primary" style="width: 100%;">
+                        <i class="glyphicon glyphicon-plus"></i>Добави ново ребро
+                      </button>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div><!-- .graph-edges -->
+          </div><!-- .col-lg-12 -->
+        </div><!-- .row -->
+      </div><!-- ._graph -->
+
+      <div class="_algorithm">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="pane vertex-select">
+              <!-- <h3>Избор на точки</h3> -->
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <label>Начална</label>
+                  <select id="startVertexSelect" class="form-control"></select>
+                </div><!-- .form-group -->
+                <div class="form-group">
+                  <label>Крайна</label>
+                  <select id="endVertexSelect" class="form-control"></select>
+                </div><!-- .form-group -->
+              </form>
+            </div><!-- .vertex-select -->
+          </div><!-- .col-lg-12 -->
+        </div><!-- .row -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="pane solution">
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>№ ребро</th>
+                    <th>Начална точка</th>
+                    <th>Крайна точка</th>
+                    <th>Тежест</th>
+                </thead>
+                <tbody id="solutionTable"></tbody>
+              </table>
+            </div><!-- .solution -->
+          </div><!-- .col-lg-12 -->
+        </div><!-- .row -->
+      </div><!-- ._algorithm -->
+
+      <hr>
+
+      <footer>
+        <p>&copy; ККК КК 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+    <script src="js/vendor/jquery-2.0.3.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
